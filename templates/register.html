@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Facial Authentication - Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #eaeaea;
+            border-radius: 10px 10px 0 0;
+            transition: background 0.3s;
+            text-decoration: none;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid transparent;
+        }
+        .tab:hover {
+            background-color: #dcdcdc;
+        }
+        #username {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .camera-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        video {
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .start-btn {
+            display: block;
+            width: 100%;
+            background: #007bff;
+            color: white;
+            padding: 14px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .start-btn:hover {
+            background: #0056b3;
+        }
+        .info-box {
+            margin-top: 30px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 5px solid #007bff;
+            border-radius: 8px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .info-box p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <a href="/register" class="tab {% if active_tab == 'register' %}active{% endif %}">Register</a>
+            <a href="/recognize" class="tab {% if active_tab == 'recognize' %}active{% endif %}">Recognize</a>
+        </div>
+        <input type="text" id="username" placeholder="Enter your name" required />
+        <div class="camera-box">
+            <video id="video" autoplay playsinline width="400" height="300"></video>
+        </div>
+        <canvas id="canvas" style="display: none;"></canvas>
+        <button class="start-btn" onclick="startCapture()">Start Face Scan</button>
+        <div class="info-box">
+            <h3>How it works:</h3>
+            <p>For recognition, our system scans your face and compares it to registered users.</p>
+            <p>For registration, we capture multiple images of your face from different angles.</p>
+            <p>The system uses <strong>LBPH</strong> (Local Binary Patterns Histograms) algorithm for facial recognition.</p>
+            <p>Authentication is completed in seconds with high accuracy.</p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+
+        async function initCamera() {
+            try {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    alert("Camera API not supported in this browser.");
+                    return;
+                }
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                alert("Camera access denied or not available.");
+            }
+        }
+
+        async function startCapture() {
+            const username = document.getElementById('username').value;
+            if (!username) {
+                alert("Please enter your name.");
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+            let count = 0;
+            const maxImages = 20;
+            let interval = setInterval(async () => {
+                if (count >= maxImages) {
+                    clearInterval(interval);
+                    alert("Face registration completed.");
+
+                    // Trigger training
+                    await fetch('/train', { method: 'POST' });
+
+                    // After training, redirect to recognize page
+                    window.location.href = '/recognize';
+
+                    return;
+                }
+
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const dataURL = canvas.toDataURL('image/jpeg');
+
+                await fetch(`/upload-face?username=${encodeURIComponent(username)}&count=${count}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ image: dataURL })
+                });
+
+                count++;
+            }, 300); // every 300ms
+        }
+
+        window.onload = initCamera;
+    </script>
+</body>
+</html>

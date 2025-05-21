@@ -1,0 +1,37 @@
+<!-- templates/recognize.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Face Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Face Recognition</h1>
+    <p>Click the button below to start the recognition process.</p>
+    <button onclick="startRecognition()">Start Recognition</button>
+
+    <pre id="resultBox"></pre>
+  </div>
+
+  <script>
+    function startRecognition() {
+      document.getElementById("resultBox").textContent = "Scanning... Please wait.";
+
+      fetch("/start-recognition")
+        .then(response => response.json())
+        .then(data => {
+          if (data.result) {
+            document.getElementById("resultBox").textContent = data.result;
+          } else {
+            document.getElementById("resultBox").textContent = "❌ " + data.error;
+          }
+        })
+        .catch(err => {
+          document.getElementById("resultBox").textContent = "❌ Error occurred: " + err;
+        });
+    }
+  </script>
+</body>
+</html>
