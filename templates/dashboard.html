@@ -2,77 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Dashboard - Welcome</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
-
-        .dashboard-card {
-            background-color: white;
-            padding: 40px 60px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
             text-align: center;
-            max-width: 500px;
         }
-
-        .dashboard-card h1 {
-            color: #333;
-            font-size: 28px;
+        .welcome-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4caf50;
         }
-
-        .dashboard-card p {
-            font-size: 18px;
-            color: #555;
+        .welcome-message {
+            font-size: 2em;
+            color: #2e7d32;
+            margin: 0;
+        }
+        .user-name {
+            font-size: 2.5em;
+            color: #1b5e20;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 1.1em;
             margin-top: 10px;
         }
-
         .logout-btn {
-            margin-top: 30px;
-            padding: 12px 25px;
-            background-color: #ff4b5c;
+            background: #f44336;
             color: white;
-            font-weight: bold;
+            padding: 12px 24px;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
+            font-size: 1.1em;
             cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background-color: #e73d4a;
-        }
-
-        .avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background-color: #eee;
-            margin-bottom: 20px;
+            transition: background 0.3s;
+            text-decoration: none;
             display: inline-block;
-            background: url('https://www.svgrepo.com/show/382106/account-avatar-profile-user-11.svg') no-repeat center center;
-            background-size: 60%;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background: #d32f2f;
+        }
+        .status-icon {
+            font-size: 3em;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-card">
-        <div class="avatar"></div>
-        <h1>Welcome, {{ user }} 👋</h1>
-        <p>You have successfully logged in using Face Recognition.</p>
-        <form action="{{ url_for('logout') }}">
-            <button class="logout-btn">Logout</button>
-        </form>
+    <div class="container">
+        <div class="welcome-box">
+            <div class="status-icon">✅</div>
+            <p class="welcome-message">Welcome back</p>
+            <h1 class="user-name">{{ username }}</h1>
+            <p class="timestamp">Login time: {{ timestamp }}</p>
+        </div>
+        <a href="/logout" class="logout-btn">Logout</a>
     </div>
 </body>
 </html>
