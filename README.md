@@ -1,6 +1,3 @@
-Here’s a reorganized and formatted version of your README.md for the FaceAuth project. The structure is clarified, sections are streamlined, and instructions are made more concise for easier readability.
-
----
 
 # FaceAuth - Facial Recognition System
 
@@ -26,7 +23,9 @@ FaceAuth is a robust facial authentication system built with **Flask**, **OpenCV
 | Homepage                                       | Registration Page                                 | Recognition Page                                   |
 |------------------------------------------------|---------------------------------------------------|----------------------------------------------------|
 | ![Homepage](![Screenshot 2025-06-08 180629](https://github.com/user-attachments/assets/1dad9fef-bea4-4531-b443-5f6f371bc3a0)
-)               | ![Registration](images/registration_page.png)     | ![Recognition](images/recognition_page.png)        |
+| ![Registration](![Screenshot 2025-06-08 180707](https://github.com/user-attachments/assets/cbd706f3-a904-4faf-b5c3-a7a2e2db8b45)
+| ![Recognition](![Screenshot 2025-06-08 180725](https://github.com/user-attachments/assets/2bc273e5-0d54-42eb-9392-df1435a17bf5)
+)        |
 
 ---
 
@@ -125,4 +124,3 @@ facial/
 
 ---
 
-If you’d like further customization or additional sections, let me know!
