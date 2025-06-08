@@ -25,7 +25,8 @@ FaceAuth is a robust facial authentication system built with **Flask**, **OpenCV
 
 | Homepage                                       | Registration Page                                 | Recognition Page                                   |
 |------------------------------------------------|---------------------------------------------------|----------------------------------------------------|
-| ![Homepage](images/homepage.png)               | ![Registration](images/registration_page.png)     | ![Recognition](images/recognition_page.png)        |
+| ![Homepage](![Screenshot 2025-06-08 180629](https://github.com/user-attachments/assets/1dad9fef-bea4-4531-b443-5f6f371bc3a0)
+)               | ![Registration](images/registration_page.png)     | ![Recognition](images/recognition_page.png)        |
 
 ---
 
