@@ -1,17 +1,110 @@
+# 🔐 FaceAuth – Facial Recognition Authentication System
 
-# FaceAuth - Facial Recognition System
+<p align="center">
+  <b>A secure facial authentication system built with Flask & OpenCV</b><br>
+  🧠 Computer Vision • 🔒 Cybersecurity • 🌐 Web Application
+</p>
 
-<br># FaceAuth - Facial Recognition System<br><br>## Overview<br><br>FaceAuth is a robust facial authentication system built with **Flask**, **OpenCV**, and deep learning techniques. It delivers seamless and secure access control for various applications, enabling user registration, facial recognition, and user management through an intuitive web interface.<br><br>---<br><br>## Features<br><br>- **User Registration:** Register new users by capturing multiple facial images.<br>- **Facial Recognition:** Authenticate users by comparing live camera feeds with registered data.<br>- **User Management:** View and delete registered users.<br>- **Model Training:** Automatically retrains when users are added or deleted.<br>- **Secure Sessions:** Uses Flask sessions for secure logins and dashboard access.<br>- **Error Handling:** Robust handling for camera, model, and file errors.<br><br>---<br><br>## Screenshots<br><br>| ![Homepage](![Screenshot 2025-06-08 180629](https://github.com/user-attachments/assets/1dad9fef-bea4-4531-b443-5f6f371bc3a0)<br>| ![Registration](![Screenshot 2025-06-08 180707](https://github.com/user-attachments/assets/cbd706f3-a904-4faf-b5c3-a7a2e2db8b45)<br>| ![Recognition](![Screenshot 2025-06-08 180725](https://github.com/user-attachments/assets/2bc273e5-0d54-42eb-9392-df1435a17bf5)<br>        <br>---<br><br>## Setup Instructions<br><br>1. **Clone the repository**<br>    ```bash<br>    git clone <your-repository-url><br>    cd facial<br>    ```<br>2. **Create and activate a virtual environment**<br>    - Windows:<br>        ```bash<br>        python -m venv venv<br>        .\venv\Scripts\activate<br>        ```<br>    - macOS/Linux:<br>        ```bash<br>        python -m venv venv<br>        source venv/bin/activate<br>        ```<br>3. **Install dependencies**<br>    ```bash<br>    pip install Flask opencv-python numpy<br>    ```<br>    > If you have issues with `opencv-python`, try `pip install opencv-python-headless`.<br>4. **Place pre-trained models**<br>    - Ensure `haarcascade_frontalface_default.xml` (from OpenCV) is available and accessible by your script. Usually, `cv2.data.haarcascades` points to it.<br><br>---<br><br>## Running the Application<br><br>1. **Activate your virtual environment** (if not already active)<br>2. **Start the Flask app**<br>    ```bash<br>    python app.py<br>    ```<br>3. **Access the application**<br>    - Go to [http://localhost:5000](http://localhost:5000) in your web browser.<br><br>---<br><br>## Usage Guide<br><br>### 1. Register a New User<br>- Navigate to `/register`<br>- Enter a unique username<br>- Click “Start Face Scan” and center your face in the camera feed<br>- When enough images are captured, the system will train and confirm registration<br><br>### 2. Recognize a User<br>- Go to `/recognize`<br>- Click “Start Recognition”<br>- If recognized, you’ll be redirected to your dashboard<br><br>### 3. Delete a User<br>- On the `/register` page, view the user list<br>- Click “Delete” to remove a user<br>- The model retrains or deletes files if no users remain<br><br>---<br><br>## Project Structure<br><br>```<br>facial/<br>├── app.py                 # Main Flask app<br>├── recognize.py           # Face recognition logic<br>├── templates/             # Web HTML templates<br>│   ├── index.html<br>│   ├── register.html<br>│   ├── recognize.html<br>│   └── dashboard.html<br>├── dataset/               # Captured images for each user<br>│   └── <username>/<br>│       ├── 1.jpg<br>│       └── ...<br>├── trained_model/         # Recognition model and labels<br>│   ├── trainer.yml<br>│   └── labels.txt<br>├── images/                # Screenshots/documentation images<br>│   ├── homepage.png<br>│   ├── registration_page.png<br>│   └── recognition_page.png<br>└── README.md<br>```<br><br>---<br><br>## Important Notes<br><br>- Prefer `localhost:5000` over `127.0.0.1:5000` for camera access<br>- Ensure your webcam is properly connected<br>- Use Chrome or Firefox for best compatibility<br><br>---<br><br>
-
-
-# 💻 Tech Stack:
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=presktok&theme=default&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=presktok&theme=default&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=presktok&theme=default&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue?logo=python">
+  <img src="https://img.shields.io/badge/Flask-Web_Framework-black?logo=flask">
+  <img src="https://img.shields.io/badge/OpenCV-Computer_Vision-green">
+  <img src="https://img.shields.io/badge/Status-Active-success">
+</p>
 
 ---
-[![](https://visitcount.itsvg.in/api?id=presktok&icon=0&color=0)](https://visitcount.itsvg.in)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+## 🚀 Overview
+
+**FaceAuth** is a secure and scalable **facial recognition–based authentication system** designed to eliminate traditional passwords. Built using **Flask**, **OpenCV**, and computer vision techniques, it enables real-time user authentication through a clean and intuitive web interface.
+
+This project is ideal for **secure access control**, academic demonstrations, and cybersecurity-focused applications.
+
+---
+
+## ✨ Features
+
+✔️ User registration with multiple facial image captures  
+✔️ Real-time facial recognition via webcam  
+✔️ Secure session-based authentication  
+✔️ User dashboard access control  
+✔️ Automatic model retraining on user add/delete  
+✔️ User management (view & delete users)  
+✔️ Robust error handling  
+
+---
+
+## 🛡️ Security Highlights
+
+- Password-less biometric authentication  
+- Flask session-based access control  
+- Automatic retraining prevents stale identities  
+- Controlled dataset storage per user  
+
+---
+
+## 🖼️ Screenshots
+
+| Homepage | Registration | Recognition |
+|--------|--------------|-------------|
+| ![Homepage](https://github.com/user-attachments/assets/1dad9fef-bea4-4531-b443-5f6f371bc3a0) | ![Registration](https://github.com/user-attachments/assets/cbd706f3-a904-4faf-b5c3-a7a2e2db8b45) | ![Recognition](https://github.com/user-attachments/assets/2bc273e5-0d54-42eb-9392-df1435a17bf5) |
+
+---
+
+## 🧠 Tech Stack
+
+- **Backend:** Flask (Python)
+- **Computer Vision:** OpenCV
+- **ML Algorithm:** LBPH Face Recognizer
+- **Frontend:** HTML, CSS, Jinja Templates
+- **Session Management:** Flask Sessions
+- **Storage:** File-based dataset
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+```bash
+git clone <your-repository-url>
+cd facial
+2️⃣ Create & Activate Virtual Environment
+python -m venv venv
+
+Windows
+venv\Scripts\activate
+
+macOS / Linux
+source venv/bin/activate
+
+3️⃣ Install Dependencies
+pip install Flask opencv-python numpy
+
+If OpenCV causes issues:
+pip install opencv-python-headless
+
+▶️ Run the Application
+python app.py
+
+🌐 Open in browser:
+👉 http://localhost:5000
+
+📘 Usage Guide
+🔹 Register New User
+Visit /register
+
+Enter a unique username
+Start face scan and align your face
+System captures images and trains the model
+
+🔹 Recognize User
+Go to /recognize
+Start recognition
+On success, redirected to dashboard
+
+🔹 Delete User
+Open registration page
+Select and delete user
+Model retrains automatically
+
+## Important Notes - Prefer localhost:5000 over 127.0.0.1:5000 for camera access - Ensure your webcam is properly connected - Use Chrome or Firefox for best compatibility
